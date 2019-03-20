@@ -1,0 +1,73 @@
+<form  (submit)="login()" #loginForm="ngForm">
+	<p>*Email: <input type="text" name="email"   [(ngModel)] = "user.email"></p>
+	<p>*Password: <input type="text" name="password"   [(ngModel)] = "user.password"></p>
+
+	<p><input type="submit" name="Log In" [disabled]="!loginForm.valid"></p>
+</form>
+
+
+<form  (submit) = "register()" #form = "ngForm">
+	<p>*First Name: <input 
+	type="text" 
+	name="first_name"
+	minlength = "2"
+	maxlength = "24"
+	[(ngModel)] = "new_user.first_name"
+	#first_name = 'ngModel'></p>
+	
+	<div *ngIf="first_name.errors?.required">First name Required</div>
+	<div *ngIf="first_name.errors?.minlength">First name must be longer than 1</div>
+	<div *ngIf="first_name.errors?.maxlength">First name must be longer than 24</div>
+
+
+	<p>*Last Name: <input 
+	type="text" 
+	name="last_name"   
+	minlength = "2"
+	maxlength = "24"
+	[(ngModel)] = "new_user.last_name"
+	#last_name = 'ngModel'></p>
+	
+	<div *ngIf="last_name.errors?.required">Last name Required</div>
+	<div *ngIf="last_name.errors?.minlength">Last name must be longer than 1</div>
+	<div *ngIf="last_name.errors?.maxlength">Last name must be less than 24</div>
+
+
+	<p>*Email: <input 
+	type="text" 
+	name="email"   
+	minlength="2"
+	maxlength="24" 
+	[(ngModel)] = "new_user.email"
+	#email = 'ngModel'></p>
+	
+	<div *ngIf="email.errors?.required">Email name Required</div>
+	<div *ngIf="email.errors?.minlength">Email name must be longer than 1</div>
+	<div *ngIf="email.errors?.maxlength">Email name must be less than 24</div>
+
+
+	<p>*Password: <input 
+	type="text" 
+	name="password"
+	minlength="4" 
+	maxlength="24" 
+	[(ngModel)] = "new_user.password"
+	#password = 'ngModel'></p>
+	
+	<div *ngIf="password.errors?.required">Password name Required</div>
+	<div *ngIf="password.errors?.minlength">Password name must be longer than 3</div>
+	<div *ngIf="password.errors?.maxlength">Password name must be less than 24</div>
+
+
+	<p>*Confirm Password: <input 
+	type="text" name="confirmPassword"   
+	[(ngModel)] = "new_user.confirmPassword"
+	#confirmPassword = 'ngModel'></p>
+	
+	<div *ngIf=" new_user.confirmPassword  != new_user.password ">Passwords must match</div>
+
+	<input type="submit" value="Register" [disabled]="!form.valid">
+</form>
+
+<div *ngIf="flag"> Email already exists </div>
+{{new_user |json }}

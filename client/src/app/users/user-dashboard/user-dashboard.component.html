@@ -1,0 +1,18 @@
+<p>
+  <a href="/dashboard">Dashboard </a> | <a href="/listings">My Listings </a> | <a href="/logout">Logout </a>
+</p>
+SEARCH BAR
+
+{{bikes | json }}
+<p></p>
+{{user | json}}
+<div *ngFor="let bike of bikes">
+	<h1>Title:{{bike.title}}</h1> <h2> Price:{{bike.price}}</h2> <br>
+	Description:{{bike.description}}
+	<p *ngIf=" bike._user == user[0]._id">
+	<button (click)="delete(update_bike._id)" >Delete</button>
+	</p>
+	<p *ngIf=" bike._user != user[0]._id">
+	<button (alert)="contact(update_bike._id)" >CONTACT</button>
+	</p>
+</div>

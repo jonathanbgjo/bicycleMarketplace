@@ -1,0 +1,89 @@
+<p>
+  <a href="/dashboard">Dashboard </a> | <a href="/listings">My Listings </a> | <a href="/logout">Logout </a>
+</p>
+<h2>Create Listeing</h2>
+
+<form (submit) = "create()" #form= "ngForm">
+	image:<br>
+	<input type="text" 
+	name="picture" 
+	required 
+	[(ngModel)] = "new_bike.picture"
+	#picture = 'ngModel'>
+<br>
+	Title:<br> <input 
+	type="text" 
+	name="title"
+	required
+	[(ngModel)] = "new_bike.title"
+	#title = 'ngModel'>
+<br>
+	Price:<br> <input 
+	type="number" 
+	name="price"
+	required
+	minlength="1" 
+	[(ngModel)] = "new_bike.price"
+	#price = 'ngModel'><br>
+<br>
+	Description:<br> <input 
+	type="text" 
+	name="description"
+	required
+	[(ngModel)] = "new_bike.description"
+	#description = 'ngModel'>
+<br>
+	Location:<br> <input 
+	type="text" 
+	name="location"
+	required
+	[(ngModel)] = "new_bike.location"
+	#location = 'ngModel'>
+<input type="submit" value="Create" [disabled]="!form.valid">
+</form>
+
+{{my_bikes | json }}
+<div id="edit">
+	<h2>Edit/Delete Listings</h2>
+
+	<span *ngFor= " let update_bike of my_bikes; let idx = index" >
+	<form (submit) = "update(update_bike)" #form = "ngForm">
+		<div id = "mybikes">
+			Title <br> <input 
+			type="text" 
+			name="title" 
+			value ="{{update_bike.title}}" 
+			[(ngModel)] = "update_bike.title"
+			#title = 'ngModel'>
+
+
+
+			<br> Description <br> <input 
+			type="text" 
+			name="description" 
+			value ="{{update_bike.description}}"
+			[(ngModel)] = "update_bike.description"
+			#description = 'ngModel'>
+
+			<br> Price <br> <input 
+			type="text" 
+			name="price" 
+			value ="{{idx}}"
+			[(ngModel)] = "update_bike.price"
+			#price = 'ngModel'>
+
+			<br> Location <br> <input 
+			type="text" 
+			name="location" 
+			value ="{{update_bike.location}}"
+			[(ngModel)] = "update_bike.location"
+			#location = 'ngModel'>
+
+			<input type="submit" value="Update">
+			<button (click)="delete(update_bike._id)" >Delete</button>
+		</div>
+	</form >
+	</span>
+</div>
+	
+	
